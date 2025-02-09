@@ -1,0 +1,271 @@
+[
+  {
+    "Table": {
+      "columns": [
+        "",
+        "June 30,",
+        ""
+      ],
+      "data": [
+        [
+          "",
+          "2019",
+          "2018"
+        ],
+        [
+          "Deferred tax assets",
+          "",
+          ""
+        ],
+        [
+          "Non-capital loss carryforwards",
+          "$161,119",
+          "$129,436"
+        ],
+        [
+          "Capital loss carryforwards",
+          "155",
+          "417"
+        ],
+        [
+          "Undeducted scientific research and development expenses",
+          "137,253",
+          "123,114"
+        ],
+        [
+          "Depreciation and amortization",
+          "683,777",
+          "829,369"
+        ],
+        [
+          "Restructuring costs and other reserves",
+          "17,845",
+          "17,202"
+        ],
+        [
+          "Deferred revenue",
+          "53,254",
+          "62,726"
+        ],
+        [
+          "Other",
+          "59,584",
+          "57,461"
+        ],
+        [
+          "Total deferred tax asset",
+          "$1,112,987",
+          "$1,219,725"
+        ],
+        [
+          "Valuation Allowance",
+          "$(77,328)",
+          "$(80,924)"
+        ],
+        [
+          "Deferred tax liabilities",
+          "",
+          ""
+        ],
+        [
+          "Scientific research and development tax credits",
+          "$(14,482)",
+          "$(13,342)"
+        ],
+        [
+          "Other",
+          "(72,599)",
+          "(82,668)"
+        ],
+        [
+          "Deferred tax liabilities",
+          "$(87,081)",
+          "$(96,010)"
+        ],
+        [
+          "Net deferred tax asset",
+          "$948,578",
+          "$1,042,791"
+        ],
+        [
+          "Comprised of:",
+          "",
+          ""
+        ],
+        [
+          "Long-term assets",
+          "1,004,450",
+          "1,122,729"
+        ],
+        [
+          "Long-term liabilities",
+          "(55,872)",
+          "(79,938)"
+        ],
+        [
+          "",
+          "$948,578",
+          "$1,042,791"
+        ]
+      ]
+    },
+    "Question": "What is the total assets as of June 30, 2019?",
+    "DatasetName": "TatQa",
+    "Answer": [
+      "948,578"
+    ],
+    "RawAnswer": "948,578",
+    "MetaData": {
+      "table_uid": "b3d63fb06110ad7e91c9e765227c1d27",
+      "question_uid": "107efaa11617ac41f5f9b3b5adf1e98c"
+    },
+    "id": 13,
+    "rawInstruction": [
+      {
+        "role": "system",
+        "content": "You are a data analyst."
+      },
+      {
+        "role": "user",
+        "content": "Your task is to answer questions based on the table content.\n\n\nThe answer should follow the format below:\n[Answer Format]\nFinal Answer: AnswerName1, AnswerName2...\n\nEnsure the final answer format is the last output line and can only be in the \"Final Answer: AnswerName1, AnswerName2...\" form, no other form. Ensure the \"AnswerName\" is a number or entity name, as short as possible, without any explanation.\n\n\nGive the final answer to the question directly without any explanation.\n\nRead the table below in JSON format:\n[TABLE] \n{\"columns\":[\"\",\"June 30,\",\"\"],\"index\":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],\"data\":[[\"\",\"2019\",\"2018\"],[\"Deferred tax assets\",\"\",\"\"],[\"Non-capital loss carryforwards\",\"$161,119\",\"$129,436\"],[\"Capital loss carryforwards\",\"155\",\"417\"],[\"Undeducted scientific research and development expenses\",\"137,253\",\"123,114\"],[\"Depreciation and amortization\",\"683,777\",\"829,369\"],[\"Restructuring costs and other reserves\",\"17,845\",\"17,202\"],[\"Deferred revenue\",\"53,254\",\"62,726\"],[\"Other\",\"59,584\",\"57,461\"],[\"Total deferred tax asset\",\"$1,112,987\",\"$1,219,725\"],[\"Valuation Allowance\",\"$(77,328)\",\"$(80,924)\"],[\"Deferred tax liabilities\",\"\",\"\"],[\"Scientific research and development tax credits\",\"$(14,482)\",\"$(13,342)\"],[\"Other\",\"(72,599)\",\"(82,668)\"],[\"Deferred tax liabilities\",\"$(87,081)\",\"$(96,010)\"],[\"Net deferred tax asset\",\"$948,578\",\"$1,042,791\"],[\"Comprised of:\",\"\",\"\"],[\"Long-term assets\",\"1,004,450\",\"1,122,729\"],[\"Long-term liabilities\",\"(55,872)\",\"(79,938)\"],[\"\",\"$948,578\",\"$1,042,791\"]]}\n\nLet's get start!\nQuestion: What is the total assets as of June 30, 2019?\n"
+      }
+    ],
+    "RawInfer": "Final Answer: 1,112,987",
+    "ExtractResult": "1,112,987"
+  },
+  {
+    "Table": {
+      "columns": [
+        "",
+        "June 30,",
+        ""
+      ],
+      "data": [
+        [
+          "",
+          "2019",
+          "2018"
+        ],
+        [
+          "Deferred tax assets",
+          "",
+          ""
+        ],
+        [
+          "Non-capital loss carryforwards",
+          "$161,119",
+          "$129,436"
+        ],
+        [
+          "Capital loss carryforwards",
+          "155",
+          "417"
+        ],
+        [
+          "Undeducted scientific research and development expenses",
+          "137,253",
+          "123,114"
+        ],
+        [
+          "Depreciation and amortization",
+          "683,777",
+          "829,369"
+        ],
+        [
+          "Restructuring costs and other reserves",
+          "17,845",
+          "17,202"
+        ],
+        [
+          "Deferred revenue",
+          "53,254",
+          "62,726"
+        ],
+        [
+          "Other",
+          "59,584",
+          "57,461"
+        ],
+        [
+          "Total deferred tax asset",
+          "$1,112,987",
+          "$1,219,725"
+        ],
+        [
+          "Valuation Allowance",
+          "$(77,328)",
+          "$(80,924)"
+        ],
+        [
+          "Deferred tax liabilities",
+          "",
+          ""
+        ],
+        [
+          "Scientific research and development tax credits",
+          "$(14,482)",
+          "$(13,342)"
+        ],
+        [
+          "Other",
+          "(72,599)",
+          "(82,668)"
+        ],
+        [
+          "Deferred tax liabilities",
+          "$(87,081)",
+          "$(96,010)"
+        ],
+        [
+          "Net deferred tax asset",
+          "$948,578",
+          "$1,042,791"
+        ],
+        [
+          "Comprised of:",
+          "",
+          ""
+        ],
+        [
+          "Long-term assets",
+          "1,004,450",
+          "1,122,729"
+        ],
+        [
+          "Long-term liabilities",
+          "(55,872)",
+          "(79,938)"
+        ],
+        [
+          "",
+          "$948,578",
+          "$1,042,791"
+        ]
+      ]
+    },
+    "Question": "What are the Fiscal years included in the table?",
+    "DatasetName": "TatQa",
+    "Answer": [
+      "2019",
+      "2018"
+    ],
+    "RawAnswer": "2019, 2018",
+    "MetaData": {
+      "table_uid": "b3d63fb06110ad7e91c9e765227c1d27",
+      "question_uid": "607dd25b10e5d14396ef2abda187330d"
+    },
+    "id": 14,
+    "rawInstruction": [
+      {
+        "role": "system",
+        "content": "You are a data analyst."
+      },
+      {
+        "role": "user",
+        "content": "Your task is to answer questions based on the table content.\n\n\nThe answer should follow the format below:\n[Answer Format]\nFinal Answer: AnswerName1, AnswerName2...\n\nEnsure the final answer format is the last output line and can only be in the \"Final Answer: AnswerName1, AnswerName2...\" form, no other form. Ensure the \"AnswerName\" is a number or entity name, as short as possible, without any explanation.\n\n\nGive the final answer to the question directly without any explanation.\n\nRead the table below in JSON format:\n[TABLE] \n{\"columns\":[\"\",\"June 30,\",\"\"],\"index\":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],\"data\":[[\"\",\"2019\",\"2018\"],[\"Deferred tax assets\",\"\",\"\"],[\"Non-capital loss carryforwards\",\"$161,119\",\"$129,436\"],[\"Capital loss carryforwards\",\"155\",\"417\"],[\"Undeducted scientific research and development expenses\",\"137,253\",\"123,114\"],[\"Depreciation and amortization\",\"683,777\",\"829,369\"],[\"Restructuring costs and other reserves\",\"17,845\",\"17,202\"],[\"Deferred revenue\",\"53,254\",\"62,726\"],[\"Other\",\"59,584\",\"57,461\"],[\"Total deferred tax asset\",\"$1,112,987\",\"$1,219,725\"],[\"Valuation Allowance\",\"$(77,328)\",\"$(80,924)\"],[\"Deferred tax liabilities\",\"\",\"\"],[\"Scientific research and development tax credits\",\"$(14,482)\",\"$(13,342)\"],[\"Other\",\"(72,599)\",\"(82,668)\"],[\"Deferred tax liabilities\",\"$(87,081)\",\"$(96,010)\"],[\"Net deferred tax asset\",\"$948,578\",\"$1,042,791\"],[\"Comprised of:\",\"\",\"\"],[\"Long-term assets\",\"1,004,450\",\"1,122,729\"],[\"Long-term liabilities\",\"(55,872)\",\"(79,938)\"],[\"\",\"$948,578\",\"$1,042,791\"]]}\n\nLet's get start!\nQuestion: What are the Fiscal years included in the table?\n"
+      }
+    ],
+    "RawInfer": "Final Answer: 2019, 2018",
+    "ExtractResult": "2019, 2018"
+  }
+]

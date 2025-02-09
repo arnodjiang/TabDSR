@@ -1,0 +1,128 @@
+Read the table in json format:
+
+## Table Format
+
+```json
+{
+  "columns": ["Column1", "Column2", "Column3", "Column4"],
+  "data": [
+    ["Cell1", "Cell2", "Cell3", "Cell4"],
+    ["Cell5", "Cell6", "Cell7", "Cell8"],
+    ["Cell9", "Cell10", "Cell11", "Cell12"]
+  ]
+}
+```
+
+Task: Find the values related to the question from the provided table, and use these values to answer the question accurately.
+
+Follow these steps:
+
+Step 1: Break Down the Question and Determine Type: Identify whether the question contains multiple sub-questions.
+  - For each sub-question, determine if it:
+    - Requires a calculation (e.g., sum, difference, average).
+      - Do not perform any calculations. Only identify the necessary values and format the complete mathematical expression as required.
+    - Can be answered by selecting a specific value or category directly from the table.
+
+Step 2: Identify Key Elements: Determine which columns are necessary to answer the question.
+  - If the provided sub-table does not contain filter information, consider all columns and rows are relevant.
+
+Step 3: Format the final Answers: Generate Final Answers and Mathematical Expressions
+  - If Calculation is Required: Format the answer as a single mathematical expression using only table cell values and basic operations (e.g., '(1 + 2 + 3) / 4 * 5'). Ensure:
+    - No non-numeric terms like 'Total', 'Today' or functions like 'avg()', 'sum()' are used.
+    - Do not calculate any intermediate results and break down complete mathematical expression. The final answers, including all steps of the calculation, should be combined into a single, final mathematical expression.
+      - Important: Ensure each final mathematical expression or direct answer addresses the question explicitly. Each numeric value in the expression must come directly from the table's cells.
+  - If No Calculation is Needed: Select the relevant value or phrase from the table to answer directly.
+  - If there is no any relevant information, consider all cells are relevant.
+
+Step 4: Output in Required Format: According to the above reasoning, you should make a conclusion in the end and give final answers in a new line.
+  - The final output should be in the form: The final answers: ["answer1 (Specify if it is a final mathematical expression or not)", "answer2"].
+  - Each answer should directly correspond to its respective sub-question, structured in sequence.
+
+## Examples
+
+### Example 1:
+Table:
+
+```json
+{
+  "columns": ["Sales"],
+  "data": [
+    [450],
+    [600],
+    [750],
+    [200]
+  ]
+}
+```
+
+Question: "What is the total sales of products with sales greater than 500?"
+
+Output:
+step 1: Break Down the Question and Determine Type: The question has only one, so there will be only a answer.
+step 2: Identify Key Elements: The question asks for the total sales of products with sales greater than 500. Therefore, the 'Sales' column values greater than 500 should be considered and only the rows where the 'Sales' column is greater than 500 are selected, so the relevant sub-table includes the 'Sales' values 600 and 750.
+step 3: Answer the question: There is only one quesiton and need to compute the sum up of 600 and 750, the answer is '600+700'. 600 and 750 are products with sales greater than 500. The question asks for the total sales of products, so we need to compute the expression "600+750 (Sum up sales of products with sales greater than 500)".
+step 4: Format the final answer: According to the above reasoning step, the final answers are follows:
+
+The final answers: ["600+750 (Sum up 'sales' of 'products' with 'sales' greater than '500.0', Final Mathematical Expression)"].
+
+### Example 2:
+Table:
+
+```json
+{
+  "columns": ["Product Name", "Sales $"],
+  "data": [
+    ["ProductA", 450],
+    ["ProductB", 600],
+    ["ProductC", 750],
+    ["ProductD", 200]
+  ]
+}
+```
+
+Question: "What is the average sales of products with sales greater than 500, And which product has the best sales"
+
+Output:
+Step 1: Break Down the Question and Determine Type: The question can be divided into two sub-question:
+  1. What is the average sales of products with sales greater than 500?
+  2. which product has the best sales?
+step 2: Identify Key Elements: According to the question which contains two sub-quesion, the "Product Name" and "Sales $" column values should be considered. the rows where the 'Sales' column is greater than 500 (Columns Sales > 500.0) are selected and most 'Sales' is selected (750 is the most), so the relevant sub-table includes the 'Sales' values 600 and 750 and 'ProductC' has the best sales.
+step 3: Answer the question: There are two sub-quesitons. For the first sub-question, The answer is "(600+750)/2 (average sales of products with sales greater than 500, Mathematical Expression)". For the second sub-question, ProductC's sale is 750, which has the best sales and the answer is "ProductC (ProductC has best sales, No Mathematical Expression)".
+step 4: Format the final answer: According to the above reasoning step, the final answers are follows:
+
+The final answers: ["(600+750)/2 (average 'sales of products' with 'sales' greater than '500.0', Final Mathematical Expression)", "ProductC ('ProductC' has best sales, No Mathematical Expression)"].
+
+### Example3: 
+Table:
+
+```json
+{
+  "columns": ["Rank", "Product Name", "Sales $", "Sales-Date"], 
+  "data": [
+    ["4", "ProductA", 450, "2024-01-01"], 
+    ["2", "ProductB", 600, "2024-01-02"], 
+    ["3", "ProductC", 750, "2024-01-03"], 
+    ["1", "ProductD", 200, "2024-01-04"] 
+  ]
+}
+```
+
+Question: "What is the absolute difference in sales between the top 2 products?" 
+
+Output:
+Step 1: Break Down the Question and Determine Type: The question has only one, so there will be only a answer.
+Step 2: Identify Key Elements: The question asks for the average sales of the top 2 products. Therefore, the 'Sales','Rank' column values should be considered. Only the rows where 'Rank' column is top 2 are selected, so "Rank" column should include "1" and "2".
+Step 3: Answer the question: There is only one quesiton. The question asks for the absolute difference in sales of the top 2 products. So the answer for the question is "600-200 (the absolute difference in sales of the top 2 products, Mathematical Expression)".
+Step 4: Format the final answer: According to the above reasoning step, the final answers are follows:
+
+The final answers: ["600-200 (the absolute difference in 'sales' of the 'top 2' products, Final Mathematical Expression)"].
+
+## User Input
+Table:
+
+```json
+{{TableString}}
+```
+
+Question: {{QuestionString}}
+Output:

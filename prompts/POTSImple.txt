@@ -1,0 +1,119 @@
+{
+  "Task": "You are given a table string containing data with possible inconsistencies. Your task is to clean, load, and simplify the table based on the user query, ensuring only the relevant rows and columns are selected. Do not calculate the final result of the query, only simplify the table for analysis.",
+  "Instructions": [
+    {
+      "Step": 1,
+      "Title": "Clean and Standardize the Table Data",
+      "Details": [
+        "Ensure consistent capitalization and remove unnecessary spaces or special characters.",
+        "Handle missing values appropriately (e.g., fill or drop them based on context).",
+        "Convert dates into a unified format (e.g., YYYY-MM-DD) and ensure numerical consistency (e.g., decimal points, thousands separators).",
+        "Rename duplicate columns, appending '_1', '_2', etc., to ensure unique column names."
+      ]
+    },
+    {
+      "Step": 2,
+      "Title": "Load the Table into a DataFrame",
+      "Details": [
+        "Parse the input table string into a dictionary and load it into a Pandas DataFrame using the following code snippet:",
+        "```python",
+        "import pandas as pd",
+        "table_df = pd.DataFrame(table['data'], columns=table['columns'])",
+        "```"
+      ]
+    },
+    {
+      "Step": 3,
+      "Title": "Simplify the Table Based on the Query",
+      "Details": [
+        "Analyze the user query to determine the rows and columns that are relevant to answering the question.",
+        "For example:",
+        "- If the query asks for the average or sum of a column, retain only that column and all rows.",
+        "- If the query involves filtering certain rows (e.g., sales > 100), apply the filter and retain only the relevant rows.",
+        "- If the query involves comparing values across columns, retain only the necessary columns and relevant rows.",
+        "Do not calculate any results, only select the relevant rows and columns."
+      ]
+    },
+    {
+      "Step": 4,
+      "Title": "Output the Simplified Table in Python Code",
+      "Details": [
+        "Generate Python code that performs the following steps:",
+        "- Loads the cleaned table string.",
+        "- Identifies and selects the relevant rows and columns based on the query.",
+        "- Outputs the simplified table in JSON format.",
+        "Example:",
+        "```python",
+        "import pandas as pd",
+        "",
+        "# Step 1: Load the table into a DataFrame",
+        "table = {",
+        "    'columns': ['Product', 'Sales', 'Region'],",
+        "    'data': [[\"Product A\", 100, \"North\"], [\"Product B\", 200, \"South\"], [\"Product C\", 300, \"East\"]]",
+        "}",
+        "table_df = pd.DataFrame(table['data'], columns=table['columns'])",
+        "",
+        "# Step 2: Simplify the table based on the query (e.g., select 'Sales' column)",
+        "simplified_df = table_df[['Sales']]",
+        "",
+        "# Step 3: Output the simplified table in JSON format",
+        "print(simplified_df.to_json(orient='split'))",
+        "```",
+        "Replace the logic for selecting rows and columns as per the specific query."
+      ]
+    }
+  ],
+  "Examples": [
+    {
+      "Example 1": {
+        "TableString": {
+          "columns": ["product", "sales", "region"],
+          "data": [
+            ["Product A", 100, "North"],
+            ["Product B", 200, "South"]
+          ],
+          "index": [0, 1]
+        },
+        "UserQuery": "What is the average sales of products?",
+        "Output": "import pandas as pd\ntable_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])\nprint(table_df[['sales']].to_json(orient='split'))"
+      }
+    },
+    {
+      "Example 2": {
+        "TableString": {
+          "columns": ["Sales"],
+          "data": [
+            [450],
+            [600],
+            [750],
+            [200]
+          ],
+          "index": [0, 1, 2, 3]
+        },
+        "UserQuery": "What is the average sales of products with sales greater than 500",
+        "Output": "import pandas as pd\ntable_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])\nprint(table_df[table_df['Sales'] > 500][['Sales']].to_json(orient='split'))"
+      }
+    },
+    {
+      "Example 3": {
+        "TableString": {
+          "columns": ["Product Name", "Sales $"],
+          "data": [
+            ["ProductA", 450],
+            ["ProductB", 600],
+            ["ProductC", 750],
+            ["ProductD", 200]
+          ],
+          "index": [0, 1, 2, 3],
+        },
+        "UserQuery": "What is the average sales of products with sales greater than 500, and which product has the best sales?",
+        "Output": "import pandas as pd\ntable_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])\nfiltered_df = table_df[table_df['Sales $'] > 500]\nprint(filtered_df[['Product Name', 'Sales $']].to_json(orient='split'))"
+      }
+    }
+  ],
+  "UserInput": {
+    "TableString": {{TableString}},
+    "UserQuery": {{Question}},
+    "Output":
+  }
+}

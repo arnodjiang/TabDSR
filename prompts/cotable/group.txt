@@ -1,0 +1,4 @@
+Group the rows according to column "{{GroupColumn}}":
+/*
+{{CleanTable}}
+*/

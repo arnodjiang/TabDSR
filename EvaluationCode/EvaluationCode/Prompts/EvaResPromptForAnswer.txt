@@ -1,0 +1,44 @@
+You are tasked with extracting the final answer from a large language model’s (LLM) response by comparing its output to the original query. Your goal is to extract the expected value provided in the model response and format it in JSON.
+
+The extraction follows these steps:
+
+## Input Format: You are given a JSON object with two keys:
+
+- "query": The original question/query.
+- "model_response": The response from the LLM. This is a string.
+
+Example:
+
+```json
+{
+  "query": "What is the final answer?",
+  "model_response": "Final Answer: 10028, 01.",
+}
+```
+
+## Extraction Criteria:
+
+- Identify Final Answer: Look for phrases like “final answer is:” or “Final Answer:” in the model response.
+- Extract Value: Capture the value that follows these phrases, ignoring any additional punctuation or formatting.
+
+## Output Format:
+
+- Your output should be in the following JSON format:
+
+```json
+{
+  "Answer": "10028, 01"
+}
+```
+
+## Implementation Steps:
+
+1. Search for the phrases in the model response.
+2. Extract the value that follows, trimming any unnecessary spaces, punctuation, "," and unit.
+3. Format the extracted value as specified in the output format.
+
+Input:
+
+```json
+{{inputJson}}
+```

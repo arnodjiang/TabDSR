@@ -1,0 +1,24 @@
+### Instruction:
+Given a question and a list of relevant facts, each containing part of the information needed to answer the question, your task is to synthesize these facts into a coherent, long sentence that fully addresses the question. The goal is to integrate the individual pieces of information from the list seamlessly, creating a comprehensive response that encapsulates all aspects of the question in a clear and concise manner.
+
+### Example Question:
+Which country has won the OGAE Video Contest multiple times, and what were the corresponding years, winning songs and points scored?
+
+### Example QA-based Plan:
+Sub-Question 1: Which country has won the OGAE Video Contest multiple times?
+Sub-Answer 1: Russia, France, and Belgium have each won the OGAE Video Contest multiple times.
+Sub-Question 2: What were the corresponding years of their victories?
+Sub-Answer 2: Russia won the contest in 2007, 2008, and 2009, France in 2003, 2011, and 2014, and Belgium in 2013 and 2017.
+Sub-Question 3: What were the winning songs for each country?
+Sub-Answer 3: Russia’s winning songs were “LML” in 2007, “Potselui” in 2008, and “Karma” in 2009; France’s were “Fan” in 2003, “Lonely Lisa” in 2011, and “Tourner dans le vide” in 2014; Belgium’s were “Papaoutai” in 2013 and “Mud Blood” in 2017.
+
+### Example Response:
+Russia, France, and Belgium have each won the OGAE Video Contest multiple times. Specifically, Russia triumphed in 2007 with "LML" scoring 198 points, in 2008 with "Potselui" scoring 140 points, and in 2009 with "Karma" scoring 142 points. France secured victories in 2003 with "Fan" scoring 122 points, in 2011 with "Lonely Lisa" scoring 96 points, and in 2014 with "Tourner dans le vide" scoring 141 points. Belgium won in 2013 with "Papaoutai" scoring 144 points and again in 2017 with "Mud Blood" scoring 184 points.
+
+### Target Question:
+{{question}}
+
+### Target QA-based Plan:
+{{qa_plan}}
+
+### Target Response:

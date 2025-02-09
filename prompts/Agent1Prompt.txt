@@ -1,0 +1,73 @@
+You are tasked with deeply analyzing a user query in the context of a provided table structure. Your objectives are to:
+
+1. Decompose the Query: Break down the main query into multiple sub-questions if applicable. Split the query only based on conjunctions (like "and", "or") or punctuation (such as commas), treating them as boundaries for separate sub-questions.
+2. Highlight Sub-queries: In the original query, highlight each identified sub-question.
+3. Provide Hints: For each sub-question, specify relevant columns or cell values that are involved. Use placeholders like `XXX` to denote column names or specific cell values that should be replaced with actual references from the table.
+  - Proper Escaping: If your output contains double quotes, ensure they are properly escaped as ". Do not escape single quotes.
+
+
+## Input Structure
+
+You will receive input in JSON format with the following keys:
+
+- `ColumnNames`: A list of all column names in the table.
+- `SampleContents`: A list of example rows to help understand data formats, column types, and patterns.
+- `Query`: User Query String.
+
+```json
+{
+  "ColumnNames": ["List of all column names in the table", "..."],
+  "SampleContents": ["A few example rows", "..."],
+  "Query": "Query String"
+}
+```
+
+## Example
+
+Given the following input:
+
+```json
+{
+  "ColumnNames": ["Product", "Price", "Year"],
+  "SampleContents": [
+    ["A", "100", "2015"],
+    ["B", "150", "2015"],
+    ["A", "200", "2016"],
+    ["B", "250", "2016"]
+  ],
+  "Query": "How much money was spent on product A and how much did product B sell in total in 2015? Finally, tell me the total sales of both products for the entire year."
+}
+```
+
+The expected output should be:
+
+- `subQueries`: A list of all sub queries.
+  - `Query`: sub query.
+  - `QueryHint`: Hint or describe for `Query`.
+- Important Requirements:
+  - Strict JSON Format: Your final answer must be strictly valid JSON that can be successfully parsed by json.loads.
+
+```json
+{
+  "subQueries": [
+    {
+      "Query": "How much money was spent on product A",
+      "QueryHint": "This sub-question involves the 'Product' column with the cell value 'A' and requires the 'Price' column for the answer."
+    },
+    {
+      "Query": "how much did product B sell in total in 2015",
+      "QueryHint": "This sub-question involves the 'Product' column with the cell value 'B', the 'Year' column with the value '2015', and requires the 'Price' column for the answer."
+    },
+    {
+      "Query": "tell me the total sales of both products for the entire year",
+      "QueryHint": "This sub-question involves the 'Product' column with cell values 'A' and 'B' and requires the 'Price' column to calculate the total sales."
+    }
+  ]
+}
+```
+
+## Input
+
+```json
+{{Inputs}}
+```

@@ -1,0 +1,102 @@
+You will be given a sub-table. The sub-table contains only the rows and columns that are directly relevant to answering the question:
+
+## Table Format
+
+```json
+{
+  "columns": ["Column1", "Column2", "Column3", "Column4"],
+  "data": [
+    ["Cell1", "Cell2", "Cell3", "Cell4"],
+    ["Cell5", "Cell6", "Cell7", "Cell8"],
+    ["Cell9", "Cell10", "Cell11", "Cell12"]
+  ]
+}
+```
+
+To answer the question based on the given question, follow these steps:
+
+step 1: Identify Key Elements: Determine which columns are necessary to answer the question. If the provided sub-table does not contain filter information, consider all columns are relevant.
+step 2: Filter the Data: Select relevant data values that directly contributes to answering the question. If the provided sub-table does not contain filter information, consider all rows are relevant.
+step 3: Format the final answer: Explain the relevant cell values and get the answer. If the provided sub-table does not contain any information in question, consider all table cells are relevant. Ensure the final answer format is the last output line and can only be in the "The Final Answer: ['answer']" form. If the question contains multiple sub-questions, output the answers in order as a list in the format: "The Final Answer: ['answer1', 'answer2', ...]".
+
+## Examples
+
+### Example 1:
+Table:
+
+```json
+{
+  "columns": ["Sales"],
+  "data": [
+    [450],
+    [600],
+    [750],
+    [200]
+  ]
+}
+```
+
+Question: "What is the total sales of products with sales greater than 500?"
+
+Output:
+step 1: Identify Key Elements: The question asks for the total sales of products with sales greater than 500. Therefore, the 'Sales' column values greater than 500 should be considered.
+step 2: Filter the Data: only the rows where the 'Sales' column is greater than 500 are selected, so the relevant sub-table includes the 'Sales' values 600 and 750.
+step 3: Format the final answer:  The question asks for the total sales of products, so we need to compute the expression "600+750=1350". Therefore,
+The Final Answer: ['1350']
+
+
+### Example 2:
+Table:
+
+```json
+{
+  "columns": ["Product Name", "Sales $"],
+  "data": [
+    ["ProductA", 450],
+    ["ProductB", 600],
+    ["ProductC", 750],
+    ["ProductD", 200]
+  ]
+}
+```
+
+Question: "What is the average sales of products with sales greater than 500, And which product has the best sales"
+
+Output:
+step 1: Identify Key Elements: According to the question which contains two sub-quesion, the "Product Name" and "Sales $" column values should be considered.
+step 2: Filter the Data: the rows where the 'Sales' column is greater than 500 are selected and most 'Sales' is selected (750 is the most), so the relevant sub-table includes the 'Sales' values 600 and 750 and 'ProductC' has the best sales.
+step 3: Format the final answer:  For the first sub-question, The final answer is "(600+750)/2=1350 (average sales of products with sales greater than 500)". For the second sub-question, ProductC's sale is 750, which has the best sales and the final answer is "ProductC". Therefore,
+The Final Answer: ['1350', 'ProductC']
+
+### Example3: 
+Table:
+
+```json
+{
+  "columns": ["Rank", "Product Name", "Sales $", "Sales-Date"], 
+  "data": [
+    ["4", "ProductA", 450, "2024-01-01"], 
+    ["2", "ProductB", 600, "2024-01-02"], 
+    ["3", "ProductC", 750, "2024-01-03"], 
+    ["1", "ProductD", 200, "2024-01-04"] 
+  ]
+}
+```
+
+Question: "What is the average sales of the top2 products?" 
+
+Output:
+step 1: Identify Key Elements: The question asks for the average sales of the top 2 products. Therefore, the 'Sales','Rank' column values should be considered.
+step 2: Filter the Data: only the rows where 'Rank' column is top 2 are selected, so "Rank" column should be "1" and "2".
+step 3: Format the conclusion for final answer:  The question asks for the average sales of the top 2 products. So we need to compute the expression "200+600=800". Therefore,
+The Final Answer: ['800']
+
+## User Input
+Table:
+
+```json
+{{TableString}}
+```
+
+Question: {{QuestionString}}
+Output:

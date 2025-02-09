@@ -1,0 +1,122 @@
+Your task is to reformulate the given UserQuery to clearly and completely express the information within the table, referencing columns by name to clarify each query. When appropriate, integrate column names directly from the table into the reformulated question or request to ensure precision.
+
+# Input format
+You will be provided with a valid json string containing the following keys.
+- columns: An array of strings, each representing the name of a table column.
+- data: A 2D array where each nested list represents a row in the table, with each element corresponding to the cells in that row under each column.
+- UserQuery: A string containing the user's question or request for specific information from the table.
+
+Analyze the table’s structumre by recognizing the relation between columns and their respective cells in data. Use these associations to reformulate the query into rewrite that can fully express te table's information.
+
+The input format is as follows:
+
+```json
+{
+  "columns": ["column_name_1", "column_name_2", "column_name_3"],
+  "data": [
+    ["Cell 1", "Cell 2", "Cell 3"],
+    ["Cell 4", "Cell 5", "Cell 6"]
+  ],
+  "UserQuery": "The user query string."
+}
+```
+
+# Reformulation Requirements
+1. Identify Sub-questions: Determine if the UserQuery contains multiple questions (e.g., "How many entries?" and "What is the value of X?") and separate these into distinct sub-questions for clarity.
+2. Identify Relevant Columns: For any query, determine which columns are directly related and explicitly refer to those column names in your response.
+3. Clarify for Specificity: Rephrase the UserQuery to reference table columns in a way that explicitly reflects the information requested. For example, If the query mentions "average sales," rewrite it to specify: "What is the average value of the column 'sales'?"
+4. Ensure Completeness: The reformulated query should fully express the UserQuery's intent while aligning with the table's structure. Avoid generic terms like “items” or “data”; instead, use exact column names for clarity.
+
+# Output format
+Your output be provided with a valid json string containing the following keys.
+- Relevant_Columns: An array of strings, each representing the relevant column names.
+- Reformulated_Query: A string containing the reformulated user's question or request for specific information from the table.
+
+The output should have the following structure:
+
+1. Identify Sub-questions: Description for identify and break down sub-questions.
+2. Identify Relevant Columns: Description for Identify Relevant Columns.
+3. Clarify for Specificity: Description for Clarify for Specificity.
+4. Ensure Completeness: Description for Ensure Completeness.
+
+Therefore, Reformulated Query is:
+
+```json
+{
+    "Reformulated_Query": "The query which is reformulated."
+}
+```
+
+# Example Reformulations
+
+## Example 1:
+
+### Input
+```json
+{
+  "columns": ["product", "sales", "region"],
+  "data": [
+    ["Product A", 100, "North"],
+    ["Product B", 200, "South"]
+  ],
+  "UserQuery": "What is the average sales of products?"
+}
+```
+
+### Output
+```json
+{
+    "Reformulated_Query": "What is the average value of the column 'sales'?"
+}
+```
+
+## Example 2:
+
+### Input
+```json
+{
+  "columns": ["dp/da", "value", "date"],
+  "data": [
+    ["1.2", 10, "2023-01-01"],
+    ["1.5", 8, "2023-01-02"]
+  ],
+  "UserQuery": "What is the minimum value of 'dp/da'?"
+}
+```
+
+### Output
+```json
+{
+    "Reformulated_Query": "What is the minimun of the column 'dp/da'?"
+}
+```
+
+## Example 3
+
+### Input:
+{
+  "columns": ["customer_id", "order_date", "amount"],
+  "data": [
+    ["C001", "2023-01-01", 500],
+    ["C002", "2023-01-02", 300]
+  ],
+  "UserQuery": "How many orders are there in total?"
+}
+
+### Output
+```json
+{
+    "Reformulated_Query": "What is the total count of rows in the table, each representing an 'order'?"
+}
+```
+
+# User Input
+
+## Input
+
+```json
+{{InputString}}
+```
+
+## Output
+

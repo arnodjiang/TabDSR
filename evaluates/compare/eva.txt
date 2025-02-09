@@ -1,0 +1,87 @@
+import pandas as pd
+
+table_data = {
+    "columns": [
+        "Description",
+        "2015",
+        "2014",
+        "2013"
+    ],
+    "data": [
+        [
+            "balance january 1",
+            1171,
+            1701,
+            1573
+        ],
+        [
+            "additions based on tax positions related to the current year",
+            67,
+            63,
+            90
+        ],
+        [
+            "additions based on tax positions related to prior years",
+            98,
+            111,
+            201
+        ],
+        [
+            "additions from acquired subsidiaries",
+            2014,
+            2014,
+            268
+        ],
+        [
+            "reductions for tax positions of prior years",
+            -84,
+            -220,
+            -141
+        ],
+        [
+            "reductions due to expiration of statutes of limitations",
+            -41,
+            -448,
+            -3
+        ],
+        [
+            "settlements with tax authorities",
+            -75,
+            -36,
+            -287
+        ],
+        [
+            "balance december 31",
+            1136,
+            1171,
+            1701
+        ]
+    ],
+    "Queries": [
+        "based on the review of the reconciliation of unrecognized tax benefits what was the change in 2014"
+    ],
+    "index": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+    ],
+    "TabeTitle": "text_1: our net deferred tax liability includes $ 23 billion related to cable franchise rights that will remain unchanged unless we recognize an impairment or dispose of a cable franchise .\
+table_8: ( in millions ) the balance december 31 of 2015 is $ 1136 ; the balance december 31 of 2014 is $ 1171 ; the balance december 31 of 2013 is $ 1701 ;"
+}
+
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+
+# Sub-query 1: Calculate the change in 2014
+# Relevant column: "2014"
+# Relevant rows: All rows except the first and last (index 1 to 6)
+
+# Calculate the change in 2014
+change_2014 = table_df.loc[table_df['Description'] != 'balance january 1', '2014'].sum() - table_df.loc[table_df['Description'] == 'balance december 31', '2014'].values[0]
+
+# Print the result
+print(round(change_2014, 2))

@@ -1,0 +1,31 @@
+Here is the table to answer this question. The answer should follow the format below:
+[Answer Format]
+Final Answer: AnswerName1, AnswerName2...
+Ensure the final answer format is the last output line and can only be in the \"Final Answer: AnswerName1, AnswerName2...\" form, no other form. Ensure the \"AnswerName\" is a number or entity name, as short as possible, without any explanation.
+Let's think step by step and then give the final answer to the question:
+/*
+col : Rank | City | Passengers Number | Ranking | Airline
+row 1 : 1 | United States, Los Angeles | 14749 | 2 | Alaska Airlines
+row 2 : 2 | United States, Houston | 5465 | 8 | United Express
+row 3 : 3 | Canada, Calgary | 3761 | 5 | Air Transat, WestJet
+row 4 : 4 | Canada, Saskatoon | 2282 | 4 |
+row 5 : 5 | Canada, Vancouver | 2103 | 2 | Air Transat
+row 6 : 6 | United States, Phoenix | 1829 | 1 | US Airways
+row 7 : 7 | Canada, Toronto | 1202 | 1 | Air Transat, CanJet
+row 8 : 8 | Canada, Edmonton | 110 | 2 |
+row 9 : 9 | United States, Oakland | 107 | 5 |
+*/
+Question: how many more passengers flew to los angeles than to saskatoon from manzanillo airport in 2013?
+Final Answer: 12467
+Here is the table to answer this question. The answer should follow the format below:
+[Answer Format]
+Final Answer: AnswerName1, AnswerName2...
+Ensure the final answer format is the last output line and can only be in the \"Final Answer: AnswerName1, AnswerName2...\" form, no other form. Ensure the \"AnswerName\" is a number or entity name, as short as possible, without any explanation.
+Let's think step by step and then give the final answer to the question:
+{{TableTitle}}
+/*
+{{RawTable}}
+*/
+{{GroupData}}
+Question: {{Question}}
+Final Answer:

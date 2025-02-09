@@ -1,0 +1,30 @@
+Based on the table title and execution result of the sql query bellow, find the answer to the given question correctly.
+
+---
+
+SQL: select City, Passengers from T;
+
+City | Passengers
+United States, Los Angeles | 14,749
+United States, Houston | 5,465
+Canada, Calgary | 3,761
+Canada, Saskatoon | 2,282
+Canada, Vancouver | 2,103
+United States, Phoenix | 1,829
+Canada, Toronto | 1,202
+Canada, Edmonton | 110
+United States, Oakland | 107
+
+Question: how many more passengers flew to los angeles than to saskatoon from manzanillo airport in 2013?
+
+A: To find the answer to this question, let’s think step by step. Based on the table, in 2013, the number of passengers who flew to Los Angeles from Manzanillo Airport was 14,749, while the number of passengers who flew to Saskatoon was 2,282. So, the difference in the number of passengers between Los Angeles and Saskatoon is 14,749 - 2,282 = 12,467. Therefore, the answer is 12,467.
+Answer: 12,467
+
+---
+
+SQL: {{SQLSelection}}
+
+{{TableStringSimple}}
+
+Question: {{QuestionString}}
+A: To find the answer to this question, let’s think step by step.

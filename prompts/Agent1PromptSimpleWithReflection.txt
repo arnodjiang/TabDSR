@@ -1,0 +1,74 @@
+## task
+
+1.Validate the Count: Verify if the number of sub-questions (subQueryCount) matches the actual number of sub-questions present in the Query.
+2.Validate the Splits: Check if the subQueries list contains all the correct sub-questions, split based on conjunctions (like “and”, “or”) or punctuation (such as commas).
+3.Provide Feedback:
+- If the count or splits are incorrect, explain why and provide the corrected subQueryCount and subQueries.
+- If everything is correct, confirm it with a statement.
+
+## Input Structure
+
+You will receive the original query and the output to be reviewed in the following JSON format:
+
+```json
+{
+  "Query": "Original user query",
+  "OutputToReview": {
+    "subQueryCount": Number,
+    "subQueries": ["List of sub-questions as identified"]
+  }
+}
+```
+
+## Example Input
+
+```json
+{
+  "Query": "How much money was spent on product A and how much did product B sell in total in 2015? Finally, tell me the total sales of both products for the entire year.",
+  "OutputToReview": {
+    "subQueryCount": 3,
+    "subQueries": [
+      "How much money was spent on product A",
+      "how much did product B sell in total in 2015",
+      "tell me the total sales of both products for the entire year"
+    ]
+  }
+}
+```
+
+## Expected Output
+
+The output should provide:
+1. A confirmation of whether the output is correct.
+2. If incorrect, provide the corrected count and list of sub-questions.
+
+## Example Output (Correct Case)
+
+```json
+{
+  "isCorrect": true,
+  "feedback": "The provided subQueryCount and subQueries are correct."
+}
+```
+
+## Example Output (Incorrect Case)
+
+```json
+{
+  "isCorrect": false,
+  "feedback": "The subQueryCount is incorrect. It should be 2 instead of 3. The subQueries list contains an unnecessary split for 'tell me the total sales of both products for the entire year.'",
+  "correctedOutput": {
+    "subQueryCount": 2,
+    "subQueries": [
+      "How much money was spent on product A and how much did product B sell in total in 2015?",
+      "Finally, tell me the total sales of both products for the entire year"
+    ]
+  }
+}
+```
+
+## Input
+
+```json
+{{Inputs}}
+```

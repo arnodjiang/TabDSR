@@ -1,0 +1,130 @@
+Read the table in json format:
+
+## Table Format
+
+```json
+{
+  "columns": ["Column1", "Column2", "Column3", "Column4"],
+  "data": [
+    ["Cell1", "Cell2", "Cell3", "Cell4"],
+    ["Cell5", "Cell6", "Cell7", "Cell8"],
+    ["Cell9", "Cell10", "Cell11", "Cell12"]
+  ]
+}
+```
+
+Now, for the given question, extract the relevant sub-table from the full table. The sub-table should contain only the rows and columns that are directly relevant to answering the question. The sub-table should be in the same format as the original table, preserving all relevant columns and rows for the question's context.
+
+To extract the relevant sub-table based on the given question, follow these steps:
+
+step 1: Identify Key Elements: Determine which columns and rows are necessary to answer the question.
+step 2: Filter the Data: Select only the relevant data that directly contributes to answering the question.
+step 3: Format the Sub-Table: Ensure the sub-table is in the same JSON format, containing only the needed columns and rows.
+
+## Examples
+
+### Example 1:
+Table:
+
+```json
+{
+  "columns": ["ProductID", "ProductName", "Sales", "SalesDate"],
+  "data": [
+    ["P001", "ProductA", 450, "2024-01-01"],
+    ["P002", "ProductB", 600, "2024-01-02"],
+    ["P003", "ProductC", 750, "2024-01-03"],
+    ["P004", "ProductD", 200, "2024-01-04"]
+  ]
+}
+```
+
+Question: "What is the total sales of products with sales greater than 500?"
+
+Output:
+step 1: Identify Relevant Columns: The question asks for the total sales of products with sales greater than 500. Therefore, the 'Sales' column values greater than 500 should be considered. 'ProductID', 'ProductName', and 'SalesDate' are not needed for the calculation.
+step 2: Filter the Data: only the rows where the 'Sales' column is greater than 500 are selected, so the relevant sub-table includes the 'Sales' values 600 and 750.
+step 3: Format the Sub-Table:
+
+```json
+{
+  "columns": ["Sales"],
+  "data": [
+    [600],
+    [750]
+  ]
+}
+```
+
+### Example 2:
+Table:
+
+```json
+{
+  "columns": ["Product ID %", "Product Name", "Sales $", "SalesDate"],
+  "data": [
+    ["P001", "ProductA", 450, "2024-01-01"],
+    ["P002", "ProductB", 600, "2024-01-02"],
+    ["P003", "ProductC", 750, "2024-01-03"],
+    ["P004", "ProductD", 200, "2024-01-04"]
+  ]
+}
+```
+
+Question: "What is the average sales of products with sales greater than 500, And which product has the best sales"
+
+Output:
+step 1: Identify Relevant Columns: The first question asks for the total sales of products with sales greater than 500. Therefore, the 'Sales' column values greater than 500 should be considered. The second question asks for the product name which has the best sales. Therefore, The column "Product Name" should be considered. In conclusion, sub-table should contain columns of "Product Name" and "Sales $" at least.
+step 2: Filter the Data: The first question asks for the total sales of products with sales greater than 500, so only the rows where the 'Sales' column is greater than 500 are selected. The second question asks for the product name which has the best sales. Therefore, "ProductC" is the product with the best sales.
+step 3: Format the Sub-Table:
+
+```json
+{
+  "columns": ["Product Name","Sales $"],
+  "data": [
+    ["ProductB", 600],
+    ["ProductC", 750]
+  ]
+}
+```
+
+### Example3: 
+Table:
+
+```json
+{
+  "columns": ["Rank", "Product Name", "Sales $", "Sales-Date"], 
+  "data": [
+    ["4", "ProductA", 450, "2024-01-01"], 
+    ["2", "ProductB", 600, "2024-01-04"], 
+    ["3", "ProductC", 750, "2024-01-04"],
+    ["1", "ProductD", 200, "2024-01-04"] 
+  ]
+}
+```
+
+Question: "What is the average sales of the top2 products at the forth day in January?" 
+
+Output:
+step 1: Identify Relevant Columns: The question asks for the average sales of the top 2 products at the forth day in January. Therefore, the 'Sales','Rank' and 'Sales-Date' column values should be considered, 'Product Name' are not needed for the calculation.
+step 2: Filter the Data: only the rows where 'Rank' column is top 2 are selected, so "Rank" column should be "1" and "2", both are '2024-01-04' (the forth day in January, 2024).
+step 3: Format the Sub-Table:
+
+```json
+{
+  "columns": ["Rank","Sales $", "Sales-Date"], 
+  "data": [
+    ["1", 200, "2024-01-04"],
+    ["2", 600, "2024-01-04"]
+  ]
+}
+```
+
+## User Input
+Table:
+
+```json
+{{TableString}}
+```
+
+Question: {{QuestionString}}
+Output:

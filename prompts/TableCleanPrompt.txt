@@ -1,0 +1,66 @@
+You are given a table where data may have inconsistencies in formatting across different columns. Your task is to clean, standardize, and reshape this table, following these steps, and then output the result in a JSON format that mirrors the input structure.
+
+1. **Identify Critical Columns and Rows:**
+   - Identify critical columns highly relevant to this question.
+   - Identify critical rows highly relevant to this question.
+
+2. **Identify and Standardize Inconsistencies:**
+   - **Text Columns:** Ensure consistent capitalization, remove unnecessary spaces, special characters, and handle missing values.
+   - **Numeric Columns:** Ensure all values are in a consistent numerical format, with correct decimal points and thousands separators.
+   - **Date/Time Columns:** Convert dates and times into a unified format (e.g., YYYY-MM-DD).
+   - **Categorical Columns:** Standardize categories, ensuring uniform spelling and capitalization.
+
+3. **Handle Multi-value Entries:**  
+   - If a column contains multiple values in one cell, separate these values into distinct columns if feasible, or use a consistent delimiter.
+
+4. **Remove Redundancy and Reshape:**
+   - Remove redundant or duplicate columns.
+   - Ensure each column has a single, consistent data type.
+   - Rename Duplicate Columns: If there are duplicate column names, rename them by appending “_1,” “_2,” etc., to ensure unique column names.
+
+5. **Output the Final Table in JSON Format:**
+   - Include a field `"critical_columns"` listing the names of the critical columns.
+   - Include a field `"critical_rows"` listing the indices of the critical rows.
+   - Use the format:  
+     ```json
+     {
+       "columns": ["column1", "column2", ...],
+       "data": [[row1_value1, row1_value2, ...], [row2_value1, row2_value2, ...], ...],
+       "critical_columns": ["columnX", "columnY"],
+       "critical_rows": [row_index1, row_index2, ...]
+     }
+     ```
+   - Each item in data should represent one row, with cleaned and standardized values.
+
+---
+
+## Examples:
+
+### Input:
+
+```json
+{
+  "columns": ["name", "age", "dob", "city", "income", "categories"],
+  "data": [
+    [" Alice  ", " 25 Year ", "1998/01/02", "New York", "50,000", "A;B"],
+    ["Bob", "26", "1997-02-15", "San Francisco ", "60.000", "B,C"],
+    ["Charlie", "27", "15-Mar-1996", " Los Angeles ", "55000", null]
+  ]
+}
+
+Output:
+```json
+{
+  "columns": ["name", "age", "dob", "city", "income", "categories"],
+  "data": [
+    ["Alice", "25", "1998-01-02", "New York", "50000", "A;B"],
+    ["Bob", "26", "1997-02-15", "San Francisco", "60000", "B;C"],
+    ["Charlie", "27", "1996-03-15", "Los Angeles", "55000", ""]
+  ],
+  "critical_columns": ["name", "income"],
+  "critical_rows": [0, 1]
+}
+```
+
+## User Input
+{{InputString}}

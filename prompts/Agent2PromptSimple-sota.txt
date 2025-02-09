@@ -1,0 +1,69 @@
+## Task Description
+
+You are tasked with cleaning and processing a JSON-formatted table while preserving the original structure as much as possible. Your main objectives are to ensure column names are unique, clean cell data, and maintain consistent formatting within the table.
+
+## Input Structure
+
+You are provided with a JSON-formatted table containing two fields: columns and data.
+- `columns`: An array of strings, each representing the name of a table column.
+- `data`: A 2D array where each nested list represents a row in the table, with each element corresponding to the cells in that row under each column.
+
+The input format is as follows:
+
+```json
+{
+  "columns": ["column_name_1", "column_name_2", "column_name_3"],
+  "data": [
+    ["Cell 1", "Cell 2", "Cell 3"],
+    ["Cell 4", "Cell 5", "Cell 6"]
+  ]
+}
+```
+
+Your task is to clean and process the table based on the following requirements:
+1. Columns Cleaning:
+  - Uniqueness: Ensure all column names are unique.
+    - If duplicate column names exist:
+      - Check if the first row of data contains nested column headers.
+      - If nested headers are present, remove this row from the data. Rename columns to ensure uniqueness while preserving the original context.
+2. Cell Data Cleaning:
+	- Numerical Columns:
+	  - Remove extraneous symbols (e.g., %, $, commas, etc.) and ensure consistent numerical formatting.
+    - Convert these values into a numerical type (e.g., float or integer) in the your outout, which is JSON format.
+	- Non-Numerical Columns:
+	  - Replace invalid, empty, or missing cells (e.g., N/A, null, None) with null.
+3. Row Filtering:
+  - Identify and exclude rows containing summary information such as:
+    - “Total”, “Sum”, “Average”, or similar statistical descriptors. These row ro columns could be compute, so there is no need to save these rows.
+    - Retain all other rows to preserve the integrity of the dataset.
+4. Output Structure:
+- Ensure that the resulting table maintains the JSON format in the end:
+	- Ensure the output maintains JSON format, including all cleaned and processed columns and rows.
+	- No essential data should be lost unless explicitly instructed to remove it (e.g., summary rows).
+
+## Output Structure
+
+The output should be a JSON object with the same structure as the input, containing the cleaned and processed data:
+
+- `columns`: An array of strings, each representing the name of a table column.
+- `data`: A 2D array where each nested list represents a row in the table, with each element corresponding to the cells in that row under each column.
+
+```json
+{
+  "columns": ["cleaned_column_name_1", "cleaned_column_name_2", "cleaned_column_name_3"],
+  "data": [
+    ["Cell_cleaned 1", "Cell_cleaned 2", "Cell_cleaned 3"],
+    ["Cell_cleaned 4", "Cell_cleaned 5", "Cell_cleaned 6"]
+  ]
+}
+```
+
+Notes:
+  - Ensure the output maintains the strict JSON format, which include in "```json ```", do not output python code.
+  - All numerical data columns are converted to appropriate numerical types.
+
+## Input
+
+```json
+{{Inputs}}
+```

@@ -1,0 +1,130 @@
+# Input format
+You will be provided with a valid python code containing a dict of `table_data` with the following keys.
+- `columns`: An array of strings, each representing the name of a table column.
+- `data`: A 2D array where each nested list represents a row in the table, with each element corresponding to the cells in that row under each column.
+- `index`: An array of integer or string, each representing the index of a table row.
+  - Note: The rows in the data are numbered starting from 0 up to the total number of rows minus one (for example, if there are 10 rows, they would be numbered from 0 to 9). The header row, if present, is not included in these numbers; only rows with actual data are counted.
+- `Query`: A string containing the user's question or request for specific information from the table.
+  - The Query may contain multiple sub-questions. If there are multiple sub-questions, please:
+    - Identify the number of sub-questions in the Query.
+    - For each sub-question, analyze it separately and provide the order of sub-questions in your output.
+- `SubQueries`: Each dictionary in the SubQueries list contains three key fields.
+  - `SubQuery`: one of Sub Queries from `Query`.
+  - `SubQueryHint`: A brief description or analysis of SubQuery. This should explain what the sub-query aims to extract or how it breaks down the overall question. It should help in understanding the logic behind this sub-query.
+  - `RelevantSubTablePythonCode`: Python code that is used to identify or extract the relevant data for SubQuery1. The code should demonstrate how to access the necessary table rows or columns based on the logic of the sub-query.
+
+Analyze the table’s structure by recognizing the relation between columns and their respective cells in data. Use these associations to identify relevant information in each cell that pertains to the Query.
+
+The input format is as follows:
+
+```python
+table_data = {
+  "columns": ["column_name_1", "column_name_2", "column_name_3"],
+  "data": [
+    ["Cell 1", "Cell 2", "Cell 3"],
+    ["Cell 4", "Cell 5", "Cell 6"]
+  ],
+  "Query": "The user query string.",
+  "index": [0,1],
+  "SubQueries": [
+    {
+      "SubQuery": "SubQuery1",
+      "SubQueryHint": "This sub-query aims to extract the total sales in the 'sales' column for products with a rating higher than 4. The analysis breaks down the task of filtering and summing the relevant values.",
+      "RelevantSubTablePythonCode": "filtered_data = [row for row in data if row[columns.index('rating')] > 4]; total_sales = sum(row[columns.index('sales')] for row in filtered_data)"
+    },
+    {
+      "SubQuery": "SubQuery2",
+      "SubQueryHint": "This sub-query focuses on calculating the average price for products in the 'price' column where the category is 'electronics'. It narrows down the data by filtering the category first.",
+      "RelevantSubTablePythonCode": "filtered_data = [row for row in data if row[columns.index('category')] == 'electronics']; avg_price = sum(row[columns.index('price')] for row in filtered_data) / len(filtered_data)"
+    }
+  ]
+}
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+```
+
+# Task instructions
+
+You should follow these requirements below:
+
+- Analyze the Query:
+  - First, break down the Query into sub-questions if applicable. If there are multiple sub-questions, identify their count.
+  - For each sub-question, provide the following:
+    - Sub-question order: Label each sub-question in order (e.g., "Sub-question 1:", "Sub-question 2:", etc.).
+    - Column and row indices: Identify the relevant columns and rows in the table that are needed to answer the sub-question.
+    - Python code: For each sub-question, write the corresponding Python code to extract the relevant data and compute the answer.
+  - RelevantTablePythonCode: Refer to the python code to get relevant sub-tables and answer the question.
+- Code Quality:
+  - The Python code must be concise, easy to understand, and modular.
+  - If necessary, add comments for clarity.
+  - Follow best practices for code efficiency and readability.
+- Data Context:
+  - Base your analysis entirely on the provided table data. Do not use any external data or make assumptions.
+  - If the Query is not related to the provided table data, politely refuse and provide a response explaining why.
+- Handling Multiple Sub-Questions:
+  - For multiple sub-questions, print each sub-question’s order (e.g., "Sub-question 1:", "Sub-question 2:").
+  - For each sub-question, identify the relevant column and row indices and extract the necessary information.
+  - For each sub-question, generate Python code to retrieve the data from the table.
+- Data Type Casting:
+  - Identify every column in the DataFrame and cast columns to appropriate data types (e.g., int, float, object) if necessary to ensure the code executes correctly.
+- Output Formatting:
+  - Provide Python code that loads the table data using the pandas library and extracts the relevant sub-table.
+  - Ensure to load the table with command ```table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])```.
+  - If the Query involves numerical calculations, perform them using DataFrame methods to get the final answers.
+    - Print the final answer: Ensure that the final output includes the print() function to display results. Do not print any other description information.
+  - If the Query involves data visualization, use matplotlib to generate charts.
+
+# Expected Output Format
+
+Provide the output in Python code, as follows:
+
+```python
+import pandas as pd
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+print(table_df.loc["column1"].mean())
+```
+
+Replace index_1, index_2, etc., with the actual indices based on the identified columns and rows. If no columns or rows are identified as relevant, return an empty array for that key.
+
+# Example Reformulations
+
+## Input
+```python
+table_data = {
+  "columns": ["Product Name", "Sales $"],
+  "data": [
+    ["ProductA", 450],
+    ["ProductB", 600],
+    ["ProductC", 750],
+    ["ProductD", 200]
+  ],
+  "index": [0,1,2,3],
+  "Query": "What is the average sales of products with sales greater than 500, And which product has the best sales",
+  "SubQueries": [
+    {
+      "SubQuery": "What is the average sales of products with sales greater than 500",
+      "SubQueryHint": "This sub-query aims to extract the total sales in the 'sales' column for products with a rating higher than 500.",
+      "RelevantSubTablePythonCode": "table_df[table_df["Sales $"]>500.0]["Sales $"]"
+    },
+    {
+      "SubQuery": "which product has the best sales",
+      "SubQueryHint": "This sub-query aims to extract the total sales in the 'sales' column for products with the best sales.",
+      "RelevantSubTablePythonCode": "table_df["Sales $"]"
+    }
+  ]
+}
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+```
+
+### Output
+```python
+import pandas as pd
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+print(table_df[table_df["Sales $"]>500.0]["Sales $"].mean())
+print(table_df[table_df["Sales $"]==table_df["Sales $"].max()]["Product Name"].item())
+```
+
+# User Input
+
+```python
+{{Inputs}}
+```

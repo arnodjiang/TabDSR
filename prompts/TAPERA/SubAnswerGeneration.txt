@@ -1,0 +1,16 @@
+### Instruction:
+Given a specific question along with its corresponding answer, your objective is to construct a comprehensive,
+well-structured response in a single, elongated sentence. The response should be formulated directly based on the
+provided answer, ensuring that it thoroughly addresses the query.
+
+### Example QA:
+Question: Which country has won the OGAE Video Contest multiple times?
+Answer: Russia, France, and Belgium.
+
+### Example Response:
+Russia, France, and Belgium have each won the OGAE Video Contest multiple times.
+### Target QA:
+Question: {{question}}
+Answer: {{answer}}
+
+### Target Response:

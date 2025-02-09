@@ -1,0 +1,8 @@
+infer.sh
+*.out
+*.sh
+logs/
+flash-attention/
+table.csv
+*.pyc
+OpenSource/

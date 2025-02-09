@@ -1,0 +1,17 @@
+Below is the output from a previous large language model. The output was intended to be valid JSON but may contain formatting errors, incomplete fields, invalid characters, or extraneous text. The final answer should adhere to the following format requirements:
+
+{{OutputFormat}}
+
+Your task is to:
+1. Carefully read and parse the given output.
+2. Identify any issues that prevent it from being valid, well-formed JSON.
+3. Correct these issues while preserving all meaningful data.
+4. If fields appear incomplete or inconsistent, repair them by inferring the intended structure and content as logically as possible.
+5. Remove any non-JSON text or formatting artifacts.
+6. Ensure that all keys and values are properly quoted with double quotes and that all brackets, braces, and commas are correctly placed.
+
+Your final output should be a strictly valid JSON object (or array) that closely aligns with the original intended structure and meaning, while ensuring that all keys, values, brackets, commas, and other syntactic elements are properly formatted and complete.
+
+## the output from a previous large language model
+
+{{Inputs}}

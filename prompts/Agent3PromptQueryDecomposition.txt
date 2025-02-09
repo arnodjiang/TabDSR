@@ -1,0 +1,53 @@
+# Input format
+You will be provided with a valid python code containing a dict of `table_data` with the following keys.
+- `columns`: An array of strings, each representing the name of a table column.
+- `data`: A 2D array where each nested list represents a row in the table, with each element corresponding to the cells in that row under each column.
+- `index`: An array of integer or string, each representing the index of a table row.
+  - Note: The rows in the data are numbered starting from 0 up to the total number of rows minus one (for example, if there are 10 rows, they would be numbered from 0 to 9). The header row, if present, is not included in these numbers; only rows with actual data are counted.
+- `Query`: A string containing the user's query or request for specific information from the table.
+
+Analyze the table’s structure by recognizing the relation between columns and their respective cells in data. Use these associations to identify relevant information in each cell that pertains to the Query.
+
+The input format is as follows:
+
+```python
+table_data = {
+  "columns": ["column_name_1", "column_name_2", "column_name_3"],
+  "data": [
+    ["Cell 1", "Cell 2", "Cell 3"],
+    ["Cell 4", "Cell 5", "Cell 6"]
+  ],
+  "Query": "The user query string",
+  "index": [0,1],
+}
+table_df = pd.DataFrame(table_data['data'], columns=table_data['columns'])
+```
+
+# Task instructions
+
+You should follow these requirements below:
+
+- Analyze the Query:
+  - For the Query, follow the steps below to generate Python code to retrieve the data and answer the query from the Dataframe table: {{QuerySteps}}
+- Code Quality:
+  - The Python code must be concise, easy to understand, and modular.
+  - If necessary, add comments for clarity.
+  - Follow best practices for code efficiency and readability.
+- Data Context:
+  - Base your analysis entirely on the provided table data. Do not use any external data or make assumptions.
+  - If the Query is not related to the provided table data, politely refuse and provide a response explaining why.
+- Data Type Casting:
+  - Identify every column in the DataFrame and cast columns to appropriate data types (e.g., int, float, object) if necessary to ensure the code executes correctly.
+- Output Formatting:
+  - Provide Python code that loads the table data using the pandas library.
+  - If the Query involves numerical calculations, perform them using DataFrame methods to get the final answers and print the final answers.
+    - Print the final answers: Ensure that the final output includes the `print()` function to display concise answers. The printed final answer should be concise, don't print any other description information.
+    - Handle numerical outputs: For any query involving calculations, format the final answer using Python’s rounding function `round()` to ensure that results are output with exactly two decimal places.
+
+Replace index_1, index_2, etc., with the actual indices based on the identified columns and rows. If no columns or rows are identified as relevant, return an empty array for that key.
+
+# User Input
+
+```python
+{{Inputs}}
+```

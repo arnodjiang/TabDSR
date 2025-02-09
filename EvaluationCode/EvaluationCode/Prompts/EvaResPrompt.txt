@@ -1,0 +1,45 @@
+You are tasked with evaluating the accuracy of a large language model’s (LLM) response by comparing its output to a reference ground truth value. Your goal is to assess whether the LLM’s response matches the expected value provided in the ground truth.
+
+The evaluation follows these steps:
+
+1.Input Format: You are given a JSON object with three keys:
+  - "query": The original question/query.
+  - "model_response": The response from the LLM. This is a string.
+  - "ground_truth": The expected correct answer. This is also a string.
+
+Example:
+
+```json
+{
+  "query": "What is the final answer?",
+  "model_response": "Final answer is: 10028、01",
+  "ground_truth": "10028,01"
+}
+```
+
+2.Evaluation Criteria:
+
+- Content Match: The LLM’s response should align with the core meaning of the ground truth. Minor variations in phrasing, including introductory text (e.g., “The answer is…”), should be tolerated as long as the key content remains the same.
+- Case Insensitivity: This evaluation is case-insensitive.
+- Tolerance for Formatting: Differences in formatting, such as punctuation, spacing, or the use of symbols/visual elements, should not affect the evaluation if they represent the same meaning (e.g., “□是 √否” vs. “the answer is no”).
+- Symbol Interpretation: When visual symbols (e.g., checkmarks, boxes) are used to represent textual responses (such as “yes” or “no”), these symbols should be interpreted based on their meaning and compared with the semantic content of the model response.
+- Flexible Matching: Evaluate whether the model’s response conveys the same information as the ground truth, regardless of minor differences in expression or format. Focus on the semantic similarity rather than strict exact matching.
+
+3.Step-by-Step Reasoning:
+
+- First, clean both the model_response and ground_truth by removing extraneous punctuation and spaces.
+- Then, compare the cleaned versions of model_response and ground_truth.
+- If they match, return 1 (correct), otherwise return 0 (incorrect).
+
+4.Output Format:
+- Your output should be a final numerical evaluation:
+  - 1 if the model’s response matches the ground truth.
+  - 0 if the model’s response does not match the ground truth.
+  - Along with the final numerical evaluation, provide a brief reasoning based on the step-by-step process. After descirbe the brief reasoning, you should give a result, such as "So the final numerical evaluation result is 1 (correct) or "So the final numerical evaluation result is 0 (incorrect)."
+- Notice: Your response does not use "true" or "false", must be 0 or 1.
+
+Input:
+
+```json
+{{inputJson}}
+```

@@ -1,0 +1,30 @@
+Generate SQL for selecting the required rows and columns, given the question and table to answer the question correctly.
+
+---
+
+SQLite table properties:
+
+Table: 2012–13 Exeter City F.C. season(row_number,name,league,fa_cup,league_cup,jp_trophy,total)
+
+3 example rows:
+select * from T limit 3;
+row_number | name | league | fa_cup | league_cup | jp_trophy | total
+0 | scot bennett | 5 | 0 | 0 | 0 | 5
+1 | danny coles | 3 | 0 | 0 | 0 | 3
+2 | liam sercombe | 1 | 0 | 0 | 0 | 1
+
+Q: does pat or john have the highest total?
+SQL: select name, total from T where name like '%pat%' or name like '%john%'
+
+---
+
+SQLite table properties:
+
+Table: {{TableProperties}}
+
+3 example rows:
+select * from T limit 3;
+{{TableMarkdown}}
+
+Q: {{QuestionString}}
+SQL:

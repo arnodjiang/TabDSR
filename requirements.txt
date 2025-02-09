@@ -1,0 +1,9 @@
+torch
+torchvision
+torchvideo
+transformers
+datasets
+evaluate
+loguru
+openai
+rouge_score

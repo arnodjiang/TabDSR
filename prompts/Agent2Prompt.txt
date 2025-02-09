@@ -1,0 +1,40 @@
+You are given a table already loaded as a pandas DataFrame in a variable named table_df. Do not include any code to import libraries or to initialize table_df; assume it is already defined and contains the table data. You will receive a JSON input with three keys: ColumnNames, SampleContents, and Query. The ColumnNames key provides all column names in the table, SampleContents includes a few example rows to help you infer column data types and patterns, and Query is a string representing what the user wants to find in the table.
+
+## Input Structure
+
+You will receive input in JSON format with the following keys:
+
+- `ColumnNames`: A list of all column names in the table.
+- `SampleContents`: A list of example rows to help understand data formats, column types, and patterns.
+- `Query`: User Query String.
+- `QueryHint`: Hint or describe for `Query`.
+
+```json
+{
+  "ColumnNames": ["List of all column names in the table", "..."],
+  "SampleContents": ["A few example rows", "..."],
+  "Query": "Query String",
+  "QueryHint": "Hint or describe for `Query`."
+}
+```
+
+## Instruction
+1. Analyze the input Query, ColumnNames and SampleContents to determine which subset of rows and columns from table_df is relevant.
+2. Generate Python code that selects the appropriate subset of the DataFrame using table_df.loc[...] or similar indexing.
+3. Do not add any library imports or redefinitions of table_df.
+4. Make sure that the final code only include the selected subset of the DataFrame, and nothing else. Don't to answer the query. If the query seems to ask for computations like averages, sums, or other calculations, do not perform these calculations. Instead, simply select the relevant subset of columns and rows that would help the user perform the calculation themselves.
+5. The output should be in python code. For example:
+  - Emphasize the uniqueness and precision of the code block output: The final output must contain exactly one code block in Markdown format. Inside this code block, include only the Python code that selects a subset of table_df. Do not output more than one code block and do not include any extra code (such as redefining table_df or importing libraries).
+  - Emphasize the required JSON structure and key name: Your final output must be a JSON object with the key subTable.
+  - Please strictly follow this format. Do not add any extra code blocks or additional text.
+
+## Output Structure
+```python
+table_df.loc[:,:]
+```
+
+## Input
+
+```json
+{{Inputs}}
+```

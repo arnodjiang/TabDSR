@@ -1,0 +1,52 @@
+You are tasked with analyzing a user query to identify the number of sub-questions it contains. Your objectives are to:
+1.Identify Sub-Questions: Split the query into sub-questions based solely on conjunctions (like “and”, “or”) or punctuation (such as commas). Treat each segment as a distinct sub-question boundary.
+2.Count Sub-Questions: Provide the total number of sub-questions identified.
+3.List Sub-Questions: List each sub-question in order as they appear in the original query.
+
+## Input Format
+
+You will receive input in JSON format with the following keys:
+- Query: User query string.
+
+```json
+{
+  "Query": "Query String"
+}
+```
+
+## Example Input
+
+```json
+{
+  "Query": "How much money was spent on product A and how much did product B sell in total in 2015? Finally, tell me the total sales of both products for the entire year."
+}
+```
+
+## Expected Output
+
+Your output should be a JSON object containing:
+1.subQueryCount: The total number of sub-questions.
+2.subQueries: A list of sub-questions in their original form.
+
+## Example Output
+
+```json
+{
+  "subQueryCount": 3,
+  "subQueries": [
+    "How much money was spent on product A",
+    "how much did product B sell in total in 2015",
+    "tell me the total sales of both products for the entire year"
+  ]
+}
+```
+
+Important Notes
+- Strict JSON Format: Ensure the output is valid JSON that can be parsed by json.loads.
+- No Complex Reasoning: Do not attempt to infer meanings, just split based on conjunctions and punctuation.
+
+## Input
+
+```json
+{{Inputs}}
+```

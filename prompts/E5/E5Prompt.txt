@@ -1,0 +1,18 @@
+Answer the following questions based on the html table. You have access to the following tools:
+python_repl
+Use the following format:
+Question: the input question you must answer
+Thought: you should always think about what to do
+Table Structure: you should describe the table in detail including different levels of headers and their meanings. In the end, you should clearly specify which columns AND rows and their corresponding levels are related to the question.
+Action: the action to take, should be one of [python_repl]
+Action Input: the input to the action (python code), you should first use pandas to first create a dataframe with relevant data and write code to accomplish the goal. To accomplish that, you should not load the raw HTML data. Instead, you should use df = pd.DataFrame(dict) as the following:
+df = pd.DataFrame( column1 : [], column2 : [] ) # dict’s keys are related column names and values are cell values. Note that you should not load the entire table (such as pd.read_html) and only load the related part.
+...
+print(...) # Finally, you MUST explicitly print the final result. For example: print(df)
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: I now know the final answer
+Begin!
+
+Table: {{HTML_table}}
+Question: {{Question}}

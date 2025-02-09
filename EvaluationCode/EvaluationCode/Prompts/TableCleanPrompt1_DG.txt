@@ -1,0 +1,7 @@
+Suppose you are an expert in statistical analysis. You will be given a table described in a special format. Your task is to answer the questions based on the content of the table.
+
+## Table
+{{TableString}}
+
+## Question
+{{QuestionString}}

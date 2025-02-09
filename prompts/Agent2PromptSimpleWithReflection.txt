@@ -1,0 +1,94 @@
+## Input Structure
+
+You are provided with a JSON-formatted table containing two fields: columns and data.
+- columns is a list of strings, where each string represents a column name in the table.
+- data is a list of lists, where each inner list represents a row of the table. All indexing starts from 0.
+
+```json
+{
+  "columns": ["column_name_1", "column_name_2", "column_name_3"],
+  "data": [
+    ["Cell 1", "Cell 2", "Cell 3"],
+    ["Cell 4", "Cell 5", "Cell 6"]
+  ]
+}
+```
+
+## Task
+
+Step 1: Validate Column cell Cleaning
+- Numerical Column Cell Validation:
+  - Ensure all cells in numerical columns contain only valid numerical data. This includes:
+  - Removing any extraneous symbols (e.g., %, ¥, $, etc.).
+  - Converting textual numbers (e.g., “1,000”) into pure numerical format (e.g., 1000).
+  - Replace empty or null cells in numerical columns with a default value of 0.
+
+2. Non-Numerical Column Cell Validation:
+  - Replace empty or null cells in non-numerical columns with a default placeholder such as "-" or None.
+  - Validate that all non-numerical cells conform to the expected format or data type, ensuring no corrupted or inconsistent entries.
+
+Step 2: Check Column Name Uniqueness
+- Duplicate Column Names:
+  - Are all column names unique after cleaning?
+  - If duplicate column names existed, were any erroneous header-like rows removed from the data?
+- Column Structure Preservation:
+  - Is the structure of column names preserved as closely as possible to the original input?
+
+Step 3: Row Filtering
+- Statistical Descriptor Rows:
+  - Were rows containing summary-like information (e.g., “Total”, “Sum”, “Average”) correctly identified and excluded?
+- Essential Data Integrity:
+  - Were no essential rows erroneously removed during the cleaning process?
+
+Step 4: Final Output Verification
+- JSON Format:
+  - Does the output maintain a valid JSON format with fields columns and data?
+- Column Names:
+  - Are column names in the columns field unique and reflect the cleaning process?
+- Data Consistency:
+  - Are all values in each column consistent with their intended data types?
+- Data Integrity:
+  - Was no essential data from the original input lost or altered in a way that compromises its integrity?
+
+## Final Reflection Statement
+- Based on the above checks, is the cleaned output aligned with the original prompt requirements?
+- If any issues are identified, list specific corrections or adjustments needed.
+
+## Output Structure
+
+- The output must be JSON format and include:
+  - `IsCorrect`: `true`, if Input table format meet the requirements above else `false`. 
+  - `columns`: A columns array with unique names.
+	- `data`: A data array with rows where all cells conform to their respective column types.
+	  - No essential data necessary for the table’s integrity should be lost.
+
+### Example Output (Correct Case)
+
+```json
+{
+  "isCorrect": true,
+  "feedback": "The provided columns and data are correct."
+}
+```
+
+## Example Output (Incorrect Case)
+
+```json
+{
+  "isCorrect": false,
+  "feedback": "The columns and data is incorrect.",
+  "correctedOutput": {
+    "columns": ["cleaned_column_name_1", "cleaned_column_name_2", "cleaned_column_name_3"],
+    "data": [
+      ["Cell_cleaned 1", "Cell_cleaned 2", "Cell_cleaned 3"],
+      ["Cell_cleaned 4", "Cell_cleaned 5", "Cell_cleaned 6"]
+    ]
+  }
+}
+```
+
+## Input
+
+```json
+{{Inputs}}
+```

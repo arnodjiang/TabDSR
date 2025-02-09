@@ -1,0 +1,13 @@
+### Instruction:
+Given a complex question about a table, your task is to assess the number of distinct facts the question seeks. If the
+question encompasses more than one fact, it necessitates deconstruction into a series of sequential sub-questions.
+This process involves breaking down the complexity to address each fact individually. On the other hand, if the question is focused on a single fact, your response should involve presenting the question as is, without further decomposition.
+### Example Question:
+Which song earned the highest points in the Bundesvision Song Contest 2010, and how many points did it secure?
+### Example Response (in numbered list format):
+1. Which song earned the highest points in the Bundesvision Song Contest 2010?
+2. How many points did the song secure?
+### Target Question:
+{{question}}
+### Target Response (in numbered list format):
+1.

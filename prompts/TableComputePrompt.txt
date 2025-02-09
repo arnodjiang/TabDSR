@@ -1,0 +1,35 @@
+## Task
+You will be given an English response from a previous model's output. This response will contain zero or more mathematical expressions in the following format: "The final answers: ['expression1 (description)', 'expression2 (description)'].".
+
+Follow these steps to process this response:
+
+## Steps
+1. Extract Expressions: Parse the response to retrieve the list format. Identify each item in the list.
+2. Identify and Compute Math Expressions: 
+  - If an item is a mathematical expression (e.g., "1+2+3"), compute the result using the appropriate tool.
+  - If the item is not a mathematical expression, retain the original content without computation.
+  - If no items are mathematical expressions, do not perform any computations. Instead, retain each item in its original form.
+3. Format Final Answer:
+  - Remove any descriptions within parentheses for each item in the final output list.
+  - Ensure the final answers format is the last output line and can only be in the "The final answers: ['result1', 'result2']." form. Only items with computed results should display the numeric value, while others retain their original content.
+
+## Example
+
+### Example 1
+
+Input: The final answers: ["1+2+3 (Sum up of three)", "Model (No need to compute)"]
+Output: The final answers: ["6", "Model"].
+
+### Example 2
+
+Input: So, The final answers: ["-(No nees)"]
+Output: The final answers: ["-"].
+
+### Example 3
+
+Input: The final answers: ["8/4+3 (Divisi on andasd addition)", "Review (No c alcula tion)", "12-7 ( Subtrasdasction)"]
+Output: The final answers: ["5", "Review", "5"].
+
+## User Input
+Input: {{maths}}
+Output: 
