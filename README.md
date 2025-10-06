@@ -1,6 +1,6 @@
 # **TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data**
 
-> Our paper “TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data” has been accepted to EMNLP 2025 🎉.
+> Our paper “TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data” has been accepted to EMNLP 2025 Findings 🎉.
 
 We strongly recommend referring to our run example to implement our results.
 
