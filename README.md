@@ -1,5 +1,4 @@
-# Official Implementation for the Paper: 
-## **TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data**
+# **TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data**
 
 We strongly recommend referring to our run example to implement our results.
 
